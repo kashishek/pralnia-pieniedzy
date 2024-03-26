@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask SQLite Example</title>
+</head>
+<body>
+    <h1>Flask SQLite Example</h1>
+    <form action="/submit" method="post">
+        <label for="message">Enter a message:</label><br>
+        <input type="text" id="message" name="message"><br>
+        <button type="submit">Submit</button>
+    </form>
+    <hr>
+    <h2>Messages:</h2>
+    <ul>
+        {% for row in messages %}
+        <li>{{ row['message'] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
