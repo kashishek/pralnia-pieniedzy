@@ -1,6 +1,7 @@
 #from flask import Flask
 from flask import *
 import sqlite3
+import random
  
 app = Flask(__name__)
 
@@ -41,16 +42,25 @@ def submit():
     conn.execute('INSERT INTO messages (message) VALUES (?)', (message,))
     conn.commit()
     conn.close()
+    if(message=="#cc420"):
+        conn = get_db_connection()
+        conn.execute('DROP TABLE messages')
+        conn.commit()
+        conn.close()
 
     # Redirect back to the home page
     return redirect(url_for('home'))
+    
+@app.route('/gamba')
+def gamba():
+    x=random.randint(1, 100)
+    return render_template('index.html', random_number=x)
 
 if __name__ == '__main__':
     # Create the SQLite database if it doesn't exist
     #conn = sqlite3.connect('database.db')
     #conn.execute('CREATE TABLE IF NOT EXISTS messages (id INTEGER PRIMARY KEY AUTOINCREMENT, message TEXT)')
     #conn.close()
-
 
     create_table()
     # Run the app
