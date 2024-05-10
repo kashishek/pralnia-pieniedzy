@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% block content %}
+<form method="post" class="buttons">
+    <h3>LOGOWANIE</h3>
+    <div>
+        <label>nazwa użytkownika:</label>
+        <input 
+            type="text" 
+            name="name" 
+            value="{{name}}"
+        />
+    </div>
+    <div>
+        <label>mail:</label>
+        <input 
+            type="text" 
+            name="mail" 
+            value="{{mail}}"
+        />
+    </div>
+    <div>
+        <label>hasło:</label>
+        <input 
+            type="password" 
+            name="haslo"
+            value="{{haslo}}" 
+        />
+    </div>
+    
+    <button 
+    type="submit" 
+    name="log_in" 
+    class="log-in-btn">
+    zaloguj</button>
+
+    <button 
+    type="submit" 
+    name="sign_in" 
+    class="sign-in-btn">
+    nowe konto</button>
+
+    {% if error %}
+    <ul>
+        <li>{{error}}</li>
+    </ul>
+    {% endif %}
+</form>
+{% endblock %}
