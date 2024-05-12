@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 #from flask import *
 from flask_socketio import SocketIO, join_room, leave_room, send
+from datetime import datetime
 import random
 import sqlite3
 from string import ascii_uppercase
@@ -37,11 +38,12 @@ create_db()
 def czy_mail(mail):
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM users WHERE username = '?'",
-        (mail))
-    conn.commit()
+    cursor.execute("SELECT * FROM users WHERE username = ?",
+        (mail,))
+    row = cursor.fetchone()
     conn.close()
-    if cursor:
+    print(f"czy mail: {row}")
+    if row:
         return(True)
     else:
         return(False)
@@ -49,11 +51,12 @@ def czy_mail(mail):
 def czy_nu(name):
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM users WHERE username = '?'",
-        (name))
-    conn.commit()
+    cursor.execute("SELECT * FROM users WHERE username = ?",
+        (name,))
+    row = cursor.fetchone()
     conn.close()
-    if cursor:
+    print(f"czy name: {row}")
+    if row:
         return(True)
     else:
         return(False)
@@ -85,9 +88,9 @@ def home():
         if sign_in!=False:
             hsh = hash(haslo+mail)
             print(f"[<- sign in ->] {name} {mail} {haslo} [<->] {hsh}")
-            if(czy_mail==True):
+            if(czy_mail(mail)==True):
                 return render_template("glow.html", error="ten mail juz jest zajęty", name=name)
-            elif(czy_nu==True):
+            elif(czy_nu(name)==True):
                 return render_template("glow.html", error="ten nazwa uzytkownika juz jest zajęty", mail=mail)
             conn = get_db_connection()
             cursor = conn.cursor()
@@ -123,15 +126,36 @@ def gamba():
 
     if request.method == "POST":
         if logout!=False:
-            #return render_template("glow.html")
             return redirect(url_for("home"))
 
 
     conn = get_db_connection()
-    messages = conn.execute('SELECT * FROM messages').fetchall()
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM messages')
+    tmes = cursor.fetchall()
     conn.close()
-    #return render_template("gamba.html", name=name, messages=messages)
-    return render_template("gamba.html", name=name)
+    return render_template("gamba.html", name=name, tmes=tmes)
+
+@socketio.on("message")
+def message(data):
+    current_time = datetime.now()
+    mes_time = current_time.strftime("%H:%M")
+
+    content = {
+        "name": session.get("name"),
+        "message": data["data"],
+        "time": mes_time
+    }
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO messages (username, message, time) VALUES (?, ?, ?)",
+        (session.get("name"), data["data"], mes_time))
+    conn.commit()
+    conn.close()
+
+    send(content)
+    print(f"{session.get('name')} said: {data['data']}")
 
 if __name__=="__main__":
     socketio.run(app, debug=True)
