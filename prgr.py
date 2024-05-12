@@ -64,11 +64,6 @@ def czy_nu(name):
 
 @app.route('/', methods=["POST", "GET"])
 def home():
-    #if 'name' in session and 'mail' in session:
-    #    return render_template('glow.htm', name=session['name'], mail=session['mail'])
-    #else:
-    #    return render_template("glow.html")
-
     if request.method == "POST":
         name = request.form.get("name")
         haslo = request.form.get("haslo")
@@ -121,8 +116,16 @@ def home():
 
 @app.route("/gamba", methods=["POST", "GET"])
 def gamba():
-    logout = request.form.get("logout", False)
     name = session.get("name")
+    logout = request.form.get("logout", False)
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM users WHERE username = ?',
+        (name))
+    player_data = cursor.fetchone()
+    player_score = player_data[3]
+    conn.close()
+
 
     if request.method == "POST":
         if logout!=False:
@@ -134,9 +137,9 @@ def gamba():
     cursor.execute('SELECT * FROM messages')
     tmes = cursor.fetchall()
     conn.close()
-    return render_template("gamba.html", name=name, tmes=tmes)
+    return render_template("gamba.html", name=name, tmes=tmes, player_score=player_score)
 
-@socketio.on("message")
+@socketio.on("new-message")
 def message(data):
     current_time = datetime.now()
     mes_time = current_time.strftime("%H:%M")
@@ -153,8 +156,8 @@ def message(data):
         (session.get("name"), data["data"], mes_time))
     conn.commit()
     conn.close()
-
-    send(content)
+    #send(content)
+    socketio.emit("message", content)
     print(f"{session.get('name')} said: {data['data']}")
 
 if __name__=="__main__":

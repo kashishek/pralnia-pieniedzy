@@ -2,6 +2,7 @@
 {% block content %}
 
 <h2>name: {{name}}</h2>
+<h3>    {{player_score}}</h3>
 <form method="post" class="buttons">
     <button
     type="submit" 
@@ -44,7 +45,7 @@
     const sendMessage = () => {
         const message = document.getElementById("message")
         if(message.value == "")return;
-        socketio.emit("message", {data: message.value });
+        socketio.emit("new-message", {data: message.value });
         message.value="";
     };
 </script>
