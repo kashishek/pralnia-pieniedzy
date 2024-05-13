@@ -2,7 +2,7 @@
 {% block content %}
 
 <h2>name: {{name}}</h2>
-<h3>    {{player_score}}</h3>
+<h3>{{player_score}}</h3>
 <form method="post" class="buttons">
     <button
     type="submit" 
@@ -19,10 +19,21 @@
     </div>
 </div>
 
+<div class="spin-comp">
+    <div class="spin-wyn" id="spin"></div>
+    <button type="button" class="spin-btn" name="spin-btn" onclick="getgambasamba()">spin</button>
+</div>
+
+
 <script type="text/javascript">
     var socketio = io();
 
     const messages = document.getElementById("messages")
+    const spin = document.getElementById("spin")
+
+    const getgambasamba = () => {
+        socketio.emit('gamba');
+    };
 
     const createMessage = (name, msg, time) => {
         const content = `
@@ -48,6 +59,16 @@
         socketio.emit("new-message", {data: message.value });
         message.value="";
     };
+    socketio.on("spin", (data) => {
+        const content = `
+        <div class="text2">
+            <span>
+                ${data.rng1} ${data.rng2} ${data.rng3} 
+            </span>
+        </div>
+        `;
+        spin.innerHTML = content;
+    });
 </script>
 {% for row in tmes %}
     <script type="text/javascript">

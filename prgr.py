@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 #from flask import *
-from flask_socketio import SocketIO, join_room, leave_room, send
+from flask_socketio import SocketIO, join_room, leave_room, send, emit
 from datetime import datetime
 import random
 import sqlite3
@@ -110,26 +110,34 @@ def home():
 
         session["mail"]=mail
         session["name"]=name
+        session["key"]=hsh
         return redirect(url_for("gamba"))
 
     return render_template("glow.html")
 
 @app.route("/gamba", methods=["POST", "GET"])
 def gamba():
-    name = session.get("name")
+    key = session.get("key")
     logout = request.form.get("logout", False)
+    spin_btn = request.form.get("spin_btn", False)
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM users WHERE username = ?',
-        (name))
+    cursor.execute('SELECT * FROM users WHERE hasz = ?',
+        (key,))
     player_data = cursor.fetchone()
+    if(not player_data):
+        return redirect(url_for("home"))
     player_score = player_data[3]
+    name = player_data[1]
     conn.close()
 
 
     if request.method == "POST":
         if logout!=False:
+            print(f"lkqwejl")
             return redirect(url_for("home"))
+        
+
 
 
     conn = get_db_connection()
@@ -159,6 +167,24 @@ def message(data):
     #send(content)
     socketio.emit("message", content)
     print(f"{session.get('name')} said: {data['data']}")
+
+@socketio.on('connect')
+def handle_connect():
+    join_room(request.sid)
+
+@socketio.on('disconnect')
+def handle_disconnect():
+    leave_room(request.sid)
+
+@socketio.on("gamba")
+def nowa_gamba():
+        data = {
+            "rng1": random.randrange(0,4),
+            "rng2": random.randrange(0,4),
+            "rng3": random.randrange(0,4)
+        }
+        emit("spin", data, room=request.sid)
+
 
 if __name__=="__main__":
     socketio.run(app, debug=True)
