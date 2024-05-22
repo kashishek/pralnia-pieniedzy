@@ -23,6 +23,7 @@
     <div class="spin-wyn" id="spin"></div>
     <button type="button" class="spin-btn" name="spin-btn" onclick="getgambasamba()">spin</button>
 </div>
+<div id="container"></div>
 
 
 <script type="text/javascript">
@@ -60,6 +61,10 @@
         message.value="";
     };
     socketio.on("spin", (data) => {
+        animateBox(data.rng1);
+        animateBox(Math.floor(Math.random() * 4),0);
+        animateBox(Math.floor(Math.random() * 4),1);
+        animateBox(Math.floor(Math.random() * 4),2);
         const content = `
         <div class="text2">
             <span>
@@ -69,6 +74,44 @@
         `;
         spin.innerHTML = content;
     });
+
+    var img1 = "{{ url_for('static', filename='aaa.png') }}";
+    var img2 = "{{ url_for('static', filename='bbb.png') }}";
+    var img3 = "{{ url_for('static', filename='ccc.png') }}";
+    var img4 = "{{ url_for('static', filename='ddd.png') }}";
+
+    function animateBox(dik, kol=1) {
+            var container = document.getElementById('container');
+            var newBox = document.createElement('div');
+            newBox.className = 'box';
+            console.log("nowy");
+            if(dik === 1) {
+                newBox.style.backgroundImage = 'url(' + img1 + ')';
+            }
+            else if(dik === 2) {
+                newBox.style.backgroundImage = 'url(' + img2 + ')';
+            }
+            else if(dik === 3) {
+                newBox.style.backgroundImage = 'url(' + img3 + ')';
+            }
+            else {
+                newBox.style.backgroundImage = 'url(' + img4 + ')';
+            }
+            newBox.style.left = (kol * 20) + 'vh';
+            container.appendChild(newBox);
+
+
+            requestAnimationFrame(function() {
+                newBox.style.top = '500px';
+                newBox.style.opacity = '0';
+            });
+
+            setTimeout(function() {
+                container.removeChild(newBox);
+                console.log("kill");
+            }, 5000);
+        }
+
 </script>
 {% for row in tmes %}
     <script type="text/javascript">
