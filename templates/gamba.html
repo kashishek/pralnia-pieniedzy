@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<h2>name: {{name}}</h2>
-<h3>{{player_score}}</h3>
-<form method="post" class="buttons">
-    <button
-    type="submit" 
-    name="logout" 
-    class="logout">
-    wyloguj</button>
-</form>
+<div class="nazwa-itd">
+    <h2>name: {{name}}</h2>
+    <h3>{{player_score}}</h3>
+    <form method="post">
+        <button
+        type="submit" 
+        name="logout" 
+        class="logout">
+        wyloguj</button>
+    </form>
+</div>
 
 <div class="message-box">
     <div class="messages" id="messages"></div>

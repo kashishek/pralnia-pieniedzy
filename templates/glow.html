@@ -1,42 +1,44 @@
 {% extends 'base.html' %} {% block content %}
 <form method="post" class="buttons">
     <h3>LOGOWANIE</h3>
-    <div>
-        <label>nazwa użytkownika:</label>
-        <input 
-            type="text" 
-            name="name" 
-            value="{{name}}"
-        />
-    </div>
-    <div>
-        <label>mail:</label>
-        <input 
-            type="text" 
-            name="mail" 
-            value="{{mail}}"
-        />
-    </div>
-    <div>
-        <label>hasło:</label>
-        <input 
-            type="password" 
-            name="haslo"
-            value="{{haslo}}" 
-        />
-    </div>
-    
-    <button 
-    type="submit" 
-    name="log_in" 
-    class="log-in-btn">
-    zaloguj</button>
+    <div class="box1">
+        <form action="">
+            <h1>Sign in</h1>
+            <div class="input-box">
+                <input 
+                type ="text"
+                name="name" 
+                value="{{name}}"
+                placeholder="Username" 
+                required>
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input 
+                type ="text"
+                name="mail" 
+                value="{{mail}}"
+                placeholder="Mail" 
+                required>
+                <i class='bx bxs-envelope'></i>
+            </div>
+            <div class="input-box">
+                <input 
+                type ="password"
+                name="haslo"
+                value="{{haslo}}" 
+                placeholder="Password" 
+                required>
+                <i class='bx bxs-lock-alt'></i>
+            </div>
 
-    <button 
-    type="submit" 
-    name="sign_in" 
-    class="sign-in-btn">
-    nowe konto</button>
+            <div class="button-container">
+                <button type="submit" name="sign_in" class="btn">Register</button>
+                <button type="submit" name="log_in" class="btn">Login</button>
+            </div>
+
+        </form>
+    </div>
 
     {% if error %}
     <ul>
