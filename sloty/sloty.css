@@ -1,0 +1,21 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  background: lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slots {
+  width: 276.5px;
+  height: 237px;
+  border: 1px blue;
+}
+.slots .reel {
+  width: 79px;
+  height: 237px;
+  border: 1px blue;
+}/*# sourceMappingURL=sloty.css.map */

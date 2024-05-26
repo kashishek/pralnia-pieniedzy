@@ -15,4 +15,13 @@ body{
     width: 3.5* $icon_width;
     height: 3* $icon_height;
     border: 1px blue; 
+    justify-content: space-between;
+    .reel{
+        width: 1* $icon_width;
+        height: 3* $icon_height;
+        border: 1px blue;
+        background-image: url(slotreel.webp); 
+        background-repeat: repeat-y;
+        background-position: 0 0 ;
+    }
 }
