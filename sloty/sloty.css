@@ -19,6 +19,7 @@ body {
   justify-content: space-between;
 }
 .slots .reel {
+  position: relative;
   border: 1px solid black;
   width: 79px;
   height: 237px;

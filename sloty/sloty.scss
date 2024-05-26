@@ -22,13 +22,14 @@ body{
     
     
     .reel{
+        position: relative;
         border: 1px solid black;
         width: $icon_width;
         height: 3* $icon_height;
         
         background-image: url(slotreel.webp);
         background-repeat: repeat-y;
-        background-position: 0 0 ; 
+        background-position: 0 0; 
         
         
     }
