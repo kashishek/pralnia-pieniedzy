@@ -14,15 +14,15 @@ body {
   width: 276.5px;
   height: 237px;
   border: 1px solid black;
+  padding: 23.7px;
   display: flex;
   justify-content: space-between;
-  
 }
 .slots .reel {
+  border: 1px solid black;
   width: 79px;
   height: 237px;
-  border: 1px black;
   background-image: url(slotreel.webp);
-  background-position: 0 0;
   background-repeat: repeat-y;
+  background-position: 0 0;
 }/*# sourceMappingURL=sloty.css.map */
