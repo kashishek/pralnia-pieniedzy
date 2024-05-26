@@ -10,12 +10,19 @@ body {
 }
 
 .slots {
+  position: relative;
   width: 276.5px;
   height: 237px;
-  border: 1px blue;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  
 }
 .slots .reel {
   width: 79px;
   height: 237px;
-  border: 1px blue;
+  border: 1px black;
+  background-image: url(slotreel.webp);
+  background-position: 0 0;
+  background-repeat: repeat-y;
 }/*# sourceMappingURL=sloty.css.map */
