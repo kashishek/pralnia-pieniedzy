@@ -1,0 +1,18 @@
+$icon_width: 79px;
+$icon_height: 79px;
+$num_icons: 9;
+html, body { 
+    height: 100%; 
+}
+body{
+    background: lightgray;
+    display: flex;
+    justify-content: center;
+	align-items: center;
+
+}
+.slots{
+    width: 3.5* $icon_width;
+    height: 3* $icon_height;
+    border: 1px blue; 
+}
