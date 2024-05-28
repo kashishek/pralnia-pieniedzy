@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/sloty.css') }}">
+        <title>Sloty</title>
+    </head>
+<body>
+    <div class="slots">
+        <div class="reel"></div>
+        <div class="reel"></div>
+        <div class="reel"></div>
+    </div>
+    <div class="buttons">
+        <button type="button" onclick="rollAll([{{rand1}}, {{rand2}}, {{rand3}}])">spin</button>
+    </div>
+    <div>
+        <strong>
+            suma: {{gowno}}
+            {{dik}}
+        </strong>
+    </div>
+    
+
+
+    <script src="{{ url_for('static', filename='sloty.js') }}"></script>
+
+    
+    
+</body>
+</html>
+
+    
