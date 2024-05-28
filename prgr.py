@@ -179,9 +179,9 @@ def handle_disconnect():
 @socketio.on("gamba")
 def nowa_gamba():
         data = {
-            "rng1": random.randrange(0,4),
-            "rng2": random.randrange(0,4),
-            "rng3": random.randrange(0,4)
+            "rng1": random.randrange(0,9),
+            "rng2": random.randrange(0,9),
+            "rng3": random.randrange(0,9)
         }
         emit("spin", data, room=request.sid)
 
