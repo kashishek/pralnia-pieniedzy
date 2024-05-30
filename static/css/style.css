@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Koulen&family=Rubik&display=swap");
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -40,9 +40,14 @@ body {
     border: none;
     border-radius: 40px;
     cursor: pointer;
+    transition: transform 250ms;
 }
 
-.content{
+.spin-btn:hover {
+    color: rgb(223, 24, 57);
+}
+
+.content {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,7 +59,6 @@ body {
     align-items: center;
     justify-content: center;
     gap: 10px;
-
 }
 
 .join {
@@ -63,7 +67,7 @@ body {
     width: 100%;
 }
 
-.create-btn{
+.create-btn {
     width: 100%;
 }
 
@@ -75,30 +79,30 @@ body {
     display: flex;
     flex-direction: column;
     width: 20vw;
-    margin-top: 17vh; /* to push below the navigation */
+    margin-top: 17vh;
 }
 
 .messages {
-    overflow-y: auto; /* Remove scrollbar */
+    overflow-y: auto;
     flex: 1;
     width: 100%;
-    max-height: calc(83vh - 70px); /* Adjust the max height to fit the container */
+    max-height: calc(83vh - 70px);
 }
 /* Custom scrollbar styles */
 .messages::-webkit-scrollbar {
     width: 12px;
 }
 
-.messages::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+.messages::-webkit-scrollbar-track { /* tlo scrolla*/
+    background: #bbbbbb; 
 }
 
-.messages::-webkit-scrollbar-thumb {
-    background: #888; 
+.messages::-webkit-scrollbar-thumb {/* kolor scrolla*/
+    background: #353535; 
     border-radius: 6px;
 }
 
-.messages::-webkit-scrollbar-thumb:hover {
+.messages::-webkit-scrollbar-thumb:hover { /*hover kolor*/
     background: #555; 
 }
 
@@ -123,6 +127,7 @@ body {
 .inputs .message-input::placeholder {
     color: rgb(17, 1, 1);
 }
+
 .inputs .send-btn {
     margin-left: 10px;
     padding: 10px 20px;
@@ -131,7 +136,13 @@ body {
     color: black;
     border: none;
     cursor: pointer;
+    transition: transform 250ms;
 }
+
+.inputs .send-btn:hover {
+    color: rgb(223, 24, 57);
+}
+
 h2 {
     text-align: center;
 }
@@ -146,14 +157,34 @@ h2 {
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    color: rgb(190, 107, 107);
+    color: rgb(187, 178, 178);
     border-radius: 10px;
     margin-bottom: 10px;
+    word-wrap: break-word; /* Ensure text wraps to new line meow */
+    white-space: pre-wrap; /* Ensure text preserves whitespace and wraps meow */
 }
 
-.muted {
-    font-size: 10px;
+
+.text span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    text-align: center;
+}
+
+.text .name {
+    color: white;
+    flex: 2; /* Adjust flex to make more space for the name */
+}
+
+.text .message {
+    flex: 6; /* Adjust flex to make more space for the message */
+}
+
+.text .time {
     color: rgb(6, 151, 103);
+    flex: 2; /* Adjust flex to make more space for the time */
 }
 
 .spin-comp {
@@ -167,7 +198,6 @@ h2 {
     align-items: center;
     justify-content: center;
 }
-
 
 #container {
     position: relative;
@@ -188,7 +218,7 @@ h2 {
     transition: top 2s, opacity 2s;
 }
 
-.box1{
+.box1 {
     width: 500px;
     background: transparent;
     border: 3.2px solid rgba(44, 44, 54, 0.64);
@@ -200,20 +230,20 @@ h2 {
     padding: 40px 50px;
 }
 
-.box1 h1{
+.box1 h1 {
     color: black;
     font-size: 40px;
     text-align: center;
 }
 
-.box1 .input-box{
+.box1 .input-box {
     position: relative;
     width: 100%;
     height: 60px;
     margin: 30px 0;
 }
 
-.box1 .btn{
+.box1 .btn {
     width: 49%;
     height: 50px;
     background-color: rgb(219, 219, 219);
@@ -225,6 +255,40 @@ h2 {
     cursor: pointer;
     font-size: 16px;
     font-weight: 600;
+    transition: transform 250ms;
+}
+
+.box1 .btn:hover {
+    color: rgb(223, 24, 57);
+}
+
+.input-box input {
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    color: rgb(22, 5, 100);
+    border: 2px solid rgba(61, 17, 17, 0.2);
+    border-radius: 40px;
+    font-size: 17px;
+    padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder {
+    color: azure;
+}
+
+.input-box i {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.input-box input:hover::placeholder {
+    color: rgb(223, 24, 57);
 }
 
 .nazwa-itd {
@@ -246,41 +310,19 @@ h2 {
     margin: 0;
 }
 
-.nazwa-itd .logout {
+.nazwa-itd .logout_btn {
     width: auto;
     padding: 10px 20px;
-}
-
-.input-box input{
-    background: transparent;
-    width: 100%;
-    height: 100%;
-    border: none;
-    outline: none;
-    color: rgb(22, 5, 100);
-    border: 2px solid rgba(61, 17, 17, 0.2);
     border-radius: 40px;
-    font-size: 17px;
-    padding: 20px 45px 20px 20px;
-}
-
-.input-box input::placeholder{
-    color: azure;
-}
-.input-box i{
-    position: absolute;
-    right: 30px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 20px;
-}
-
-.btn:hover{
-    color: rgb(223, 24, 57);
+    background-color: rgb(219, 219, 219);
+    color: black;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
     transition: transform 250ms;
 }
 
-.input-box input:hover::placeholder {
+.nazwa-itd .logout_btn:hover {
     color: rgb(223, 24, 57);
-    transition: transform 250ms;
 }
