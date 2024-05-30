@@ -303,7 +303,7 @@ h2 {
     top: 0;
     left: 0;
     background-color: transparent;
-    backdrop-filter: blur(3.2px);
+    backdrop-filter: blur(10px);
 }
 
 .nazwa-itd h2, .nazwa-itd h3 {
