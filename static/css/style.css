@@ -1,23 +1,46 @@
 @import url("https://fonts.googleapis.com/css2?family=Koulen&family=Rubik&display=swap");
 
-.slots {
-    position: relative;
-    width: 276.5px;
-    height: 237px;
-    border: 1px solid black;
-    padding: 23.7px;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Koulen', cursive;
+    font-family: 'Rubik', sans-serif;
+}
+
+body {
     display: flex;
-    justify-content: space-between;
-  }
-  .slots .reel {
-    position: relative;
-    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('meowmeows.jpg') no-repeat;
+}
+
+.slots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    margin-bottom: 20px;
+}
+
+.slots .reel {
     width: 79px;
     height: 237px;
-    background-image: url(../slotreel.webp);
+    border: 1px solid black;
+    background-image: url('../slotreel.webp');
     background-repeat: repeat-y;
-    background-position: 0 0;
-  }/*# sourceMappingURL=sloty.css.map */
+}/*# sourceMappingURL=sloty.css.map */
+
+.spin-btn {
+    width: 100px;
+    height: 50px;
+    background-color: rgb(219, 219, 219);
+    color: black;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+}
 
 .content{
     display: flex;
@@ -45,16 +68,13 @@
 }
 
 .message-box {
-    border-color: black;
-    border-width: 2px;
-    border-style: solid;
-    border-radius: 10px;
+    border: 1px solid black;
     background-color: whitesmoke;
-    height: 80vh;
+    height: 83vh;
     display: flex;
     flex-direction: column;
-    width: 80vw;
-    align-items: stretch;
+    width: 20vw;
+    margin-top: 17vh; /* to push below the navigation */
 }
 
 .messages {
@@ -66,8 +86,31 @@
 .inputs {
     padding: 10px;
     display: flex;
+    align-items: center;
 }
 
+.inputs .message-input {
+    flex: 1;
+    background: transparent;
+    border: 2px solid rgba(61, 17, 17, 0.2);
+    border-radius: 40px;
+    padding: 20px;
+    color: black;
+    outline: none;
+}
+
+.inputs .message-input::placeholder {
+    color: black;
+}
+.inputs .send-btn {
+    margin-left: 10px;
+    padding: 10px 20px;
+    border-radius: 40px;
+    background-color: rgb(219, 219, 219);
+    color: black;
+    border: none;
+    cursor: pointer;
+}
 h2 {
     text-align: center;
 }
@@ -91,16 +134,16 @@ h2 {
 }
 
 .spin-comp {
-    border-color: black;
-    border-width: 2px;
-    border-style: solid;
-    border-radius: 10px;
+    border: 1px solid black;
     background-color: whitesmoke;
-    height: 15vh;
+    height: 83vh;
+    width: 60vw;
+    margin-top: 17vh; /* to push below the navigation */
+    margin-left: 20vw; /* to position next to the chat */
     display: flex;
     flex-direction: column;
-    width: 80vw;
-    align-items: stretch;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -121,22 +164,6 @@ h2 {
     background-size: cover;
     background-position: center;
     transition: top 2s, opacity 2s;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Koulen', cursive;
-    font-family: 'Rubik', sans-serif;
-}
-
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: url('meowmeows.jpg') no-repeat;
 }
 
 .box1{
@@ -179,9 +206,25 @@ body{
 
 .nazwa-itd {
     width: 100%;
-    height: 100%;
-    border: none;
-    justify-content: center;
+    height: 17vh;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: white;
+}
+
+.nazwa-itd h2, .nazwa-itd h3 {
+    margin: 0;
+}
+
+.nazwa-itd .logout {
+    width: auto;
+    padding: 10px 20px;
 }
 
 .input-box input{

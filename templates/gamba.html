@@ -4,19 +4,15 @@
     <h2>name: {{name}}</h2>
     <h3>{{player_score}}</h3>
     <form method="post">
-        <button
-        type="submit" 
-        name="logout" 
-        class="logout">
-        wyloguj</button>
+        <button type="submit" name="logout" class="logout btn">Sign out</button>
     </form>
 </div>
 
 <div class="message-box">
     <div class="messages" id="messages"></div>
     <div class="inputs">
-        <input type="text" rows="3" placeholder="wiadomosc" name="message" id="message"/>
-        <button type="button" name="send" id="send-btn" onclick="sendMessage()">send</button>
+        <input type="text" rows="3" placeholder="Message" name="message" id="message" class="message-input"/>
+        <button type="button" name="send" id="send-btn" class="send-btn btn" onclick="sendMessage()">Send</button>
     </div>
 </div>
 
@@ -26,22 +22,14 @@
         <div class="reel"></div>
         <div class="reel"></div>
     </div>
-    <button type="button" class="spin-btn" name="spin-btn" onclick="getgambasamba()">spin</button>
+    <button type="button" class="spin-btn btn" name="spin-btn" onclick="getgambasamba()">Spin</button>
 </div>
-
-<div class="slots">
-    <div class="reel"></div>
-    <div class="reel"></div>
-    <div class="reel"></div>
-</div>
-
 
 <script src="{{ url_for('static', filename='sloty.js') }}"></script>
 <script type="text/javascript">
     var socketio = io();
 
     const messages = document.getElementById("messages")
-    const spin = document.getElementById("spin")
 
     const getgambasamba = () => {
         socketio.emit('gamba');
@@ -71,10 +59,11 @@
         socketio.emit("new-message", {data: message.value });
         message.value="";
     };
+
     socketio.on("spin", (data) => {
         let zrobione = rollAll([data.rng1, data.rng2, data.rng3]);
         if(zrobione) {
-            console.log("spin_dada: ", data.rng1, data.rng2, data.rng3);
+            console.log("spin_data: ", data.rng1, data.rng2, data.rng3);
         }
     });
 </script>

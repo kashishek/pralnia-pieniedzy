@@ -1,29 +1,29 @@
-html, body {
-    height: 100%;
-  }
-  
-  body {
-    background: lightgray;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .slots {
-    position: relative;
-    width: 276.5px;
-    height: 237px;
-    border: 1px solid black;
-    padding: 23.7px;
-    display: flex;
-    justify-content: space-between;
-  }
-  .slots .reel {
-    position: relative;
-    border: 1px solid black;
-    width: 79px;
-    height: 237px;
-    background-image: url(../slotreel.webp);
-    background-repeat: repeat-y;
-    background-position: 0 0;
-  }/*# sourceMappingURL=sloty.css.map */
+  html, body {
+      height: 100%;
+    }
+    
+    body {
+      background: lightgray;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .slots {
+      position: relative;
+      width: 276.5px;
+      height: 237px;
+      border: 1px solid black;
+      padding: 23.7px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .slots .reel {
+      position: relative;
+      border: 1px solid black;
+      width: 79px;
+      height: 237px;
+      background-image: url(../slotreel.webp);
+      background-repeat: repeat-y;
+      background-position: 0 0;
+    }/*# sourceMappingURL=sloty.css.map */
