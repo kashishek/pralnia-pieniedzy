@@ -69,7 +69,8 @@ body {
 
 .message-box {
     border: 1px solid black;
-    background-color: whitesmoke;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
     height: 83vh;
     display: flex;
     flex-direction: column;
@@ -78,12 +79,32 @@ body {
 }
 
 .messages {
-    overflow-y: scroll;
+    overflow-y: auto; /* Remove scrollbar */
     flex: 1;
     width: 100%;
+    max-height: calc(83vh - 70px); /* Adjust the max height to fit the container */
+}
+/* Custom scrollbar styles */
+.messages::-webkit-scrollbar {
+    width: 12px;
+}
+
+.messages::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+.messages::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 6px;
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+    background: #555; 
 }
 
 .inputs {
+    border: 1px solid black;
+    background-color: aliceblue;
     padding: 10px;
     display: flex;
     align-items: center;
@@ -100,7 +121,7 @@ body {
 }
 
 .inputs .message-input::placeholder {
-    color: black;
+    color: rgb(17, 1, 1);
 }
 .inputs .send-btn {
     margin-left: 10px;
@@ -124,22 +145,23 @@ h2 {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 10px;
+    color: rgb(190, 107, 107);
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 .muted {
     font-size: 10px;
-    color: darkgray;
+    color: rgb(6, 151, 103);
 }
 
 .spin-comp {
-    border: 1px solid black;
-    background-color: whitesmoke;
+    background-color: transparent;
     height: 83vh;
     width: 60vw;
-    margin-top: 17vh; /* to push below the navigation */
-    margin-left: 20vw; /* to position next to the chat */
+    margin-top: 17vh;
+    margin-left: 20vw; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -179,6 +201,7 @@ h2 {
 }
 
 .box1 h1{
+    color: black;
     font-size: 40px;
     text-align: center;
 }
@@ -215,7 +238,8 @@ h2 {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: white;
+    background-color: transparent;
+    backdrop-filter: blur(3.2px);
 }
 
 .nazwa-itd h2, .nazwa-itd h3 {
@@ -233,7 +257,7 @@ h2 {
     height: 100%;
     border: none;
     outline: none;
-    color:aliceblue;
+    color: rgb(22, 5, 100);
     border: 2px solid rgba(61, 17, 17, 0.2);
     border-radius: 40px;
     font-size: 17px;

@@ -4,7 +4,7 @@
     <h2>name: {{name}}</h2>
     <h3>{{player_score}}</h3>
     <form method="post">
-        <button type="submit" name="logout" class="logout btn">Sign out</button>
+        <button type="submit" name="logout" class="logout_btn">Sign out</button>
     </form>
 </div>
 
@@ -30,6 +30,7 @@
     var socketio = io();
 
     const messages = document.getElementById("messages")
+    const spin = document.getElementById("spin")
 
     const getgambasamba = () => {
         socketio.emit('gamba');
@@ -38,15 +39,19 @@
     const createMessage = (name, msg, time) => {
         const content = `
         <div class="text">
-            <span>
-                <strong>${name}</strong>: ${msg}    
+            <span class="name">
+                <strong>${name}</strong>
             </span>
-            <span class="muted">
+            <span class="message">
+                ${msg}
+            </span>
+            <span class="time">
                 ${time}
             </span>
         </div>
         `;
         messages.innerHTML += content;
+        messages.scrollTop = messages.scrollHeight; // Scroll to the bottom
     };
 
     socketio.on("message", (data) => {
@@ -55,15 +60,15 @@
 
     const sendMessage = () => {
         const message = document.getElementById("message")
-        if(message.value == "")return;
+        if(message.value == "") return;
         socketio.emit("new-message", {data: message.value });
-        message.value="";
+        message.value = "";
     };
 
     socketio.on("spin", (data) => {
         let zrobione = rollAll([data.rng1, data.rng2, data.rng3]);
         if(zrobione) {
-            console.log("spin_data: ", data.rng1, data.rng2, data.rng3);
+            console.log("spin_dada: ", data.rng1, data.rng2, data.rng3);
         }
     });
 </script>
