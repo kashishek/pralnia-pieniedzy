@@ -2,7 +2,7 @@
 {% block content %}
 <div class="nazwa-itd">
     <h2>name: {{name}}</h2>
-    <h3>{{player_score}}</h3>
+    <div class="player-score" id="scoretab"></div>
     <form method="post">
         <button
         type="submit" 
@@ -29,23 +29,22 @@
     <button type="button" class="spin-btn" name="spin-btn" onclick="getgambasamba()">spin</button>
 </div>
 
-<div class="slots">
-    <div class="reel"></div>
-    <div class="reel"></div>
-    <div class="reel"></div>
-</div>
-
 
 <script src="{{ url_for('static', filename='sloty.js') }}"></script>
 <script type="text/javascript">
     var socketio = io();
+    let zrobione2 = true;
+    const content2 = `
+        <div class="text">
+            <span class="text">
+                {{player_score}}
+            </span>
+        </div>
+        `;
+    scoretab.innerHTML = content2;
 
     const messages = document.getElementById("messages")
-    const spin = document.getElementById("spin")
-
-    const getgambasamba = () => {
-        socketio.emit('gamba');
-    };
+    //const spin = document.getElementById("spin")
 
     const createMessage = (name, msg, time) => {
         const content = `
@@ -71,11 +70,24 @@
         socketio.emit("new-message", {data: message.value });
         message.value="";
     };
-    socketio.on("spin", (data) => {
-        let zrobione = rollAll([data.rng1, data.rng2, data.rng3]);
-        if(zrobione) {
-            console.log("spin_dada: ", data.rng1, data.rng2, data.rng3);
+
+    const getgambasamba = () => {
+        if(zrobione2 === false){
+            return;
         }
+        zrobione2 = false;
+        socketio.emit('gamba');
+        setTimeout(() => {
+            zrobione2 = true;
+        }, 5010);
+    };
+    
+    socketio.on("spin", (data) => {
+        rollAll([data.rng1, data.rng2, data.rng3]);
+        scoretab.innerHTML = data.score - 1;
+        setTimeout(() => {
+            scoretab.innerHTML = data.score_after;
+        }, 5010);
     });
 </script>
 {% for row in tmes %}

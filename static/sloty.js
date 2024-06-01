@@ -1,4 +1,4 @@
-let zrobione = true;
+var tab_slotow = [0, 0, 0]
 const icon_width = 79 ,
       icon_height = 79 ,
       num_icons = 9 ,
@@ -16,17 +16,12 @@ const roll = (reel, offset = 0, back_rand) => {
     reel.style.backgroundPositionY = `${backgroundPositionY + delta * icon_height}px`;
 }
 function rollAll(back_rand_list){
-    if(zrobione===false){
-        return(false);
-    }
-    zrobione = false;
     const reelsList = document.querySelectorAll('.slots > .reel');
     [...reelsList].map((reel,i) => {
-        //console.log(reel, i)
         roll(reel, i, back_rand_list[i]);
+        tab_slotow[i]+=back_rand_list[i];
+        tab_slotow[i]=tab_slotow[i] % 9;
+        console.log(i, tab_slotow[i]);
     })
-    setTimeout(() => {
-        zrobione = true;
-    }, 3500);
     return(true)
 }
