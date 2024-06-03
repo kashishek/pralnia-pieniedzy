@@ -1,0 +1,323 @@
+@import url("https://fonts.googleapis.com/css2?family=Koulen&family=Rubik&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Koulen', cursive;
+    font-family: 'Rubik', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('meowmeows.jpg') no-repeat;
+}
+
+.slots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    margin-bottom: 20px;
+}
+
+.slots .reel {
+    width: 79px;
+    height: 237px;
+    border: 1px solid black;
+    background-image: url('../slotreel.webp');
+    background-repeat: repeat-y;
+}
+
+.spin-btn {
+    width: 100px;
+    height: 50px;
+    background-color: rgb(219, 219, 219);
+    color: black;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: transform 250ms;
+}
+
+.spin-btn:hover {
+    color: rgb(223, 24, 57);
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.join {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.create-btn {
+    width: 100%;
+}
+
+.message-box {
+    border: 1px solid black;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    height: 83vh;
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    margin-top: 17vh;
+}
+
+.messages {
+    overflow-y: auto;
+    flex: 1;
+    width: 100%;
+    max-height: calc(83vh - 70px);
+}
+
+/* Custom scrollbar styles */
+.messages::-webkit-scrollbar {
+    width: 12px;
+}
+
+.messages::-webkit-scrollbar-track {
+    background: #bbbbbb;
+}
+
+.messages::-webkit-scrollbar-thumb {
+    background: #353535;
+    border-radius: 6px;
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.inputs {
+    border: 1px solid black;
+    background-color: aliceblue;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.message-input {
+    flex: 1;
+    background: transparent;
+    border: 2px solid rgba(61, 17, 17, 0.2);
+    border-radius: 40px;
+    padding: 20px;
+    color: black;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.message-input::placeholder {
+    color: rgb(17, 1, 1);
+}
+
+.send-btn {
+    margin-left: 10px;
+    padding: 10px 20px;
+    border-radius: 40px;
+    background-color: rgb(219, 219, 219);
+    color: black;
+    border: none;
+    cursor: pointer;
+    transition: transform 250ms;
+}
+
+.send-btn :hover {
+    color: rgb(223, 24, 57);
+}
+
+h2 {
+    text-align: center;
+}
+
+#message {
+    flex: 1;
+}
+
+.text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    color: rgb(187, 178, 178);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.text strong {
+    color: red;
+}
+
+.text span {
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    text-align: center;
+}
+
+.spin-comp {
+    background-color: transparent;
+    height: 83vh;
+    width: 60vw;
+    margin-top: 17vh;
+    margin-left: 20vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 1;
+    background-size: cover;
+    background-position: center;
+    transition: top 2s, opacity 2s;
+}
+
+.box1 {
+    width: 500px;
+    background: transparent;
+    border: 3.2px solid rgba(44, 44, 54, 0.64);
+    backdrop-filter: blur(3.2px);
+    box-shadow: 0 0 15px rgba(0, 0, 0, .2);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    padding: 40px 50px;
+}
+
+.box1 h1 {
+    color: black;
+    font-size: 40px;
+    text-align: center;
+}
+
+.box1 .input-box {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    margin: 30px 0;
+}
+
+.box1 .btn {
+    width: 49%;
+    height: 50px;
+    background-color: rgb(219, 219, 219);
+    color: black;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(11, 11, 46, 0.64);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: transform 250ms;
+}
+
+.box1 .btn:hover {
+    color: rgb(223, 24, 57);
+}
+
+.input-box input {
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    color: rgb(22, 5, 100);
+    border: 2px solid rgba(61, 17, 17, 0.2);
+    border-radius: 40px;
+    font-size: 17px;
+    padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder {
+    color: azure;
+}
+
+.input-box i {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.input-box input:hover::placeholder {
+    color: rgb(223, 24, 57);
+}
+
+.nazwa-itd {
+    width: 100%;
+    height: 17vh;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+}
+
+.nazwa-itd h2,
+.nazwa-itd h3 {
+    margin: 0;
+}
+.nazwa-itd .logout_btn {
+    margin-left: 10px;
+    padding: 10px 20px;
+    border-radius: 40px;
+    background-color: rgb(219, 219, 219);
+    color: black;
+    border: none;
+    cursor: pointer;
+    transition: transform 250ms;
+}
+
+.nazwa-itd .logout_btn:hover {
+    color: rgb(223, 24, 57);
+}
+
+.text .time {
+    color: green;
+}
