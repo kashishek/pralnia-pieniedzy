@@ -33,7 +33,7 @@
 <script src="{{ url_for('static', filename='sloty.js') }}"></script>
 <script type="text/javascript">
     var socketio = io();
-    let zrobione2 = true;
+    let zrobione2 = false;
     const content2 = `
         <div class="text">
             <span class="text">
@@ -42,6 +42,11 @@
         </div>
         `;
     scoretab.innerHTML = content2;
+
+    rollAll(["{{sloty_start[0]}}", "{{sloty_start[1]}}", "{{sloty_start[2]}}"], 5);
+    setTimeout(() => {
+        zrobione2=true;
+    }, 2000);
 
     const messages = document.getElementById("messages")
     //const spin = document.getElementById("spin")
@@ -83,7 +88,8 @@
     };
     
     socketio.on("spin", (data) => {
-        rollAll([data.rng1, data.rng2, data.rng3]);
+        console.log("spin")
+        rollAll([data.rng1, data.rng2, data.rng3], 100);
         scoretab.innerHTML = data.score - 1;
         setTimeout(() => {
             scoretab.innerHTML = data.score_after;

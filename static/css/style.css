@@ -53,7 +53,7 @@
     height: 80vh;
     display: flex;
     flex-direction: column;
-    width: 80vw;
+    width: 50vw;
     align-items: stretch;
 }
 
@@ -96,10 +96,10 @@ h2 {
     border-style: solid;
     border-radius: 10px;
     background-color: rgb(190, 42, 42);
-    height: 15vh;
+    height: 10vh;
     display: flex;
     flex-direction: column;
-    width: 10vw;
+    width: 10vh;
     align-items: stretch;
 }
 
@@ -178,7 +178,7 @@ body{
 }
 
 .nazwa-itd {
-    width: 100%;
+    width: 20vh;
     height: 100%;
     border: none;
     justify-content: center;

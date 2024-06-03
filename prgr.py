@@ -7,6 +7,7 @@ from datetime import datetime
 import random
 import sqlite3
 from string import ascii_uppercase
+iconMap = ["banana", "seven", "cherr", "sliwka", "mandarynka", "dzwon", "bar", "cytryna", "watermelon"]
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'djtengaknaga'
@@ -91,7 +92,7 @@ def home():
             conn = get_db_connection()
             cursor = conn.cursor()
             cursor.execute("INSERT INTO users (hasz, username, mail, score, sloty) VALUES (?, ?, ?, ?, ?)",
-               (hsh, name, mail, 20, "000",))
+               (hsh, name, mail, 5, "000",))
             conn.commit()
             conn.close()
 
@@ -125,8 +126,11 @@ def gamba():
         return redirect(url_for("home"))
     player_score = player_data[3]
     name = player_data[1]
+    sloty_start = player_data[4]
+    print(sloty_start)
+    ss_tab = [int(sloty_start[0]), int(sloty_start[1]), int(sloty_start[2])]
+    print(ss_tab)
     conn.close()
-
 
     if request.method == "POST":
         if logout!=False:
@@ -139,7 +143,7 @@ def gamba():
     cursor.execute('SELECT * FROM messages')
     tmes = cursor.fetchall()
     conn.close()
-    return render_template("gamba.html", name=name, tmes=tmes, player_score=player_score)
+    return render_template("gamba.html", name=name, tmes=tmes, player_score=player_score, sloty_start=ss_tab)
 
 @socketio.on("new-message")
 def message(data):
@@ -182,6 +186,14 @@ def nowa_gamba():
             gstr = row[1]
             if(score_db<=0):
                 print(f"no credits {name}")
+                #if(score_db == 0):
+                #    cursor.execute("UPDATE users SET score = -1 WHERE hasz = ?", (hsh,))
+                #    wiado = "😭😭😭 " + str(name) + " nie ma żetonów 💰💰💰 idź szukać parcy 😘😘😘"
+                #    content = {"name": "","message": wiado, "time": "😭😭:😭😭"}
+                #    socketio.emit("message", content)
+                #    cursor = conn.cursor()
+                #    cursor.execute("INSERT INTO messages (username, message, time) VALUES (?, ?, ?)",
+                #        (content["name"], content["message"], content["time"], ))
                 return
         else:
             return
@@ -209,9 +221,17 @@ def nowa_gamba():
 
         if(it1==it2 and it2==it3):
             #jeśli komuś sie chce dla każdego rodzaju inny wynik to tutaj ify trzeba dać============================================
-            data["score_after"] = score_db + 10
-            cursor.execute("UPDATE users SET score = score + 11 WHERE hasz = ?", (hsh,))
-            print(f"fat W [>>] {session.get("name")}")
+            
+            dod = (it1 + 1) * 10
+            wiado = "🤑🤑🤑 " + str(name) + " wygrał 🙏🙏🙏 3x " + iconMap[it1] + "!!!   + " + str(dod) + " credits"
+            data["score_after"] = score_db + dod
+            cursor.execute("UPDATE users SET score = score + ? WHERE hasz = ?", (dod+1, hsh,))
+            print(wiado)
+            content = {"name": "","message": wiado, "time": "🤑🤑:🤑🤑"}
+            socketio.emit("message", content)
+            cursor = conn.cursor()
+            cursor.execute("INSERT INTO messages (username, message, time) VALUES (?, ?, ?)",
+                (content["name"], content["message"], content["time"], ))
         else:
             data["score_after"] = data["score"] - 1
         conn.commit()
