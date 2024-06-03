@@ -92,7 +92,7 @@ def home():
             conn = get_db_connection()
             cursor = conn.cursor()
             cursor.execute("INSERT INTO users (hasz, username, mail, score, sloty) VALUES (?, ?, ?, ?, ?)",
-               (hsh, name, mail, 5, "000",))
+               (hsh, name, mail, 20, "000",))
             conn.commit()
             conn.close()
 
