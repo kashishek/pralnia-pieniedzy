@@ -1,25 +1,53 @@
 @import url("https://fonts.googleapis.com/css2?family=Koulen&family=Rubik&display=swap");
 
-.slots {
-    position: relative;
-    width: 276.5px;
-    height: 237px;
-    border: 1px solid black;
-    padding: 23.7px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Koulen', cursive;
+    font-family: 'Rubik', sans-serif;
+}
+
+body {
     display: flex;
-    justify-content: space-between;
-  }
-  .slots .reel {
-    position: relative;
-    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('meowmeows.jpg') no-repeat;
+}
+
+.slots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    margin-bottom: 20px;
+}
+
+.slots .reel {
     width: 79px;
     height: 237px;
-    background-image: url(../slotreel.webp);
+    border: 1px solid black;
+    background-image: url('../slotreel.webp');
     background-repeat: repeat-y;
-    background-position: 0 0;
-  }/*# sourceMappingURL=sloty.css.map */
+}
 
-.content{
+.spin-btn {
+    width: 100px;
+    height: 50px;
+    background-color: rgb(219, 219, 219);
+    color: black;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: transform 250ms;
+}
+
+.spin-btn:hover {
+    color: rgb(223, 24, 57);
+}
+
+.content {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -31,7 +59,6 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-
 }
 
 .join {
@@ -40,32 +67,83 @@
     width: 100%;
 }
 
-.create-btn{
+.create-btn {
     width: 100%;
 }
 
 .message-box {
-    border-color: black;
-    border-width: 2px;
-    border-style: solid;
-    border-radius: 10px;
-    background-color: whitesmoke;
-    height: 80vh;
+    border: 1px solid black;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    height: 83vh;
     display: flex;
     flex-direction: column;
-    width: 50vw;
-    align-items: stretch;
+    width: 20vw;
+    margin-top: 17vh;
 }
 
 .messages {
-    overflow-y: scroll;
+    overflow-y: auto;
     flex: 1;
     width: 100%;
+    max-height: calc(83vh - 70px);
+}
+
+/* Custom scrollbar styles */
+.messages::-webkit-scrollbar {
+    width: 12px;
+}
+
+.messages::-webkit-scrollbar-track {
+    background: #bbbbbb;
+}
+
+.messages::-webkit-scrollbar-thumb {
+    background: #353535;
+    border-radius: 6px;
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 .inputs {
-    padding: 10px;
+    border: 1px solid black;
+    background-color: aliceblue;
     display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.message-input {
+    flex: 1;
+    background: transparent;
+    border: 2px solid rgba(61, 17, 17, 0.2);
+    border-radius: 40px;
+    padding: 20px;
+    color: black;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.message-input::placeholder {
+    color: rgb(17, 1, 1);
+}
+
+.btn-style {
+    margin-left: 10px;
+    padding: 10px 20px;
+    border-radius: 40px;
+    background-color: rgb(219, 219, 219);
+    color: black;
+    border: none;
+    cursor: pointer;
+    transition: transform 250ms;
+}
+
+.btn-style:hover {
+    color: rgb(223, 24, 57);
 }
 
 h2 {
@@ -81,28 +159,38 @@ h2 {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.muted {
-    font-size: 10px;
-    color: darkgray;
-}
-
-.player-score {
-    border-color: black;
-    border-width: 2px;
-    border-style: solid;
+    padding: 10px;
+    color: rgb(187, 178, 178);
     border-radius: 10px;
-    background-color: rgb(190, 42, 42);
-    height: 10vh;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.text strong {
+    color: red;
+}
+
+.text span {
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    text-align: center;
+}
+
+.spin-comp {
+    background-color: transparent;
+    height: 83vh;
+    width: 60vw;
+    margin-top: 17vh;
+    margin-left: 20vw;
     display: flex;
     flex-direction: column;
-    width: 10vh;
-    align-items: stretch;
+    align-items: center;
+    justify-content: center;
 }
-
 
 #container {
     position: relative;
@@ -123,23 +211,7 @@ h2 {
     transition: top 2s, opacity 2s;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Koulen', cursive;
-    font-family: 'Rubik', sans-serif;
-}
-
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: url('meowmeows.jpg') no-repeat;
-}
-
-.box1{
+.box1 {
     width: 500px;
     background: transparent;
     border: 3.2px solid rgba(44, 44, 54, 0.64);
@@ -151,19 +223,20 @@ body{
     padding: 40px 50px;
 }
 
-.box1 h1{
+.box1 h1 {
+    color: black;
     font-size: 40px;
     text-align: center;
 }
 
-.box1 .input-box{
+.box1 .input-box {
     position: relative;
     width: 100%;
     height: 60px;
     margin: 30px 0;
 }
 
-.box1 .btn{
+.box1 .btn {
     width: 49%;
     height: 50px;
     background-color: rgb(219, 219, 219);
@@ -175,32 +248,31 @@ body{
     cursor: pointer;
     font-size: 16px;
     font-weight: 600;
+    transition: transform 250ms;
 }
 
-.nazwa-itd {
-    width: 20vh;
-    height: 100%;
-    border: none;
-    justify-content: center;
+.box1 .btn:hover {
+    color: rgb(223, 24, 57);
 }
 
-.input-box input{
+.input-box input {
     background: transparent;
     width: 100%;
     height: 100%;
     border: none;
     outline: none;
-    color:aliceblue;
+    color: rgb(22, 5, 100);
     border: 2px solid rgba(61, 17, 17, 0.2);
     border-radius: 40px;
     font-size: 17px;
     padding: 20px 45px 20px 20px;
 }
 
-.input-box input::placeholder{
+.input-box input::placeholder {
     color: azure;
 }
-.input-box i{
+
+.input-box i {
     position: absolute;
     right: 30px;
     top: 50%;
@@ -208,12 +280,44 @@ body{
     font-size: 20px;
 }
 
-.btn:hover{
+.input-box input:hover::placeholder {
     color: rgb(223, 24, 57);
+}
+
+.nazwa-itd {
+    width: 100%;
+    height: 17vh;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+}
+
+.nazwa-itd h2,
+.nazwa-itd h3 {
+    margin: 0;
+}
+.nazwa-itd .logout_btn {
+    margin-left: 10px;
+    padding: 10px 20px;
+    border-radius: 40px;
+    background-color: rgb(219, 219, 219);
+    color: black;
+    border: none;
+    cursor: pointer;
     transition: transform 250ms;
 }
 
-.input-box input:hover::placeholder {
+.nazwa-itd .logout_btn:hover {
     color: rgb(223, 24, 57);
-    transition: transform 250ms;
+}
+
+.text .time {
+    color: green;
 }
