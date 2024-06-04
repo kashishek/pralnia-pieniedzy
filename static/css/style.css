@@ -78,7 +78,7 @@ body {
     height: 83vh;
     display: flex;
     flex-direction: column;
-    width: 20vw;
+    width: 60vw;
     margin-top: 17vh;
 }
 
@@ -157,12 +157,13 @@ h2 {
 .text {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
+    /*align-items: center;*/
+    /*justify-content: space-between;
+    padding: 10px;*/
     color: rgb(187, 178, 178);
     border-radius: 10px;
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
+    margin-left: 15px;
     word-wrap: break-word;
     white-space: pre-wrap;
 }
@@ -175,7 +176,7 @@ h2 {
     color: black;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     flex: 1;
     text-align: center;
 }
@@ -183,9 +184,8 @@ h2 {
 .spin-comp {
     background-color: transparent;
     height: 83vh;
-    width: 60vw;
+    width: 40vw;
     margin-top: 17vh;
-    margin-left: 20vw;
     display: flex;
     flex-direction: column;
     align-items: center;

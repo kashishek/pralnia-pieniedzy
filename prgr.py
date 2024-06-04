@@ -7,7 +7,8 @@ from datetime import datetime
 import random
 import sqlite3
 from string import ascii_uppercase
-iconMap = ["banana", "seven", "cherr", "sliwka", "mandarynka", "dzwon", "bar", "cytryna", "watermelon"]
+iconMap = ["brek", "legiunia","albert", "mafiaboss", "sucker", "ssacz", "sigma", "gorgo", "aleksandra sawicka"]
+#iconMap = ["banana", "seven", "cherr", "sliwka", "mandarynka", "dzwon", "bar", "cytryna", "watermelon"]
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'djtengaknaga'
@@ -209,12 +210,18 @@ def nowa_gamba():
             "score_after": 69
         }
 
+        
         it1 = int(gstr[0])
         it2 = int(gstr[1])
         it3 = int(gstr[2])
         it1=(it1 + data["rng1"]) % 9
         it2=(it2 + data["rng2"]) % 9
         it3=(it3 + data["rng3"]) % 9
+
+        if(name == "LeBron James"):
+            it1 = it3
+            data["rng1"] = data["rng3"]
+
         nowe_ustawienie = str(it1) + str(it2) + str(it3)
         print(f"gamba: {nowe_ustawienie}")
         cursor.execute("UPDATE users SET sloty = ?",(nowe_ustawienie,))

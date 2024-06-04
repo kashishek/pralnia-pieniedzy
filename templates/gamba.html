@@ -60,6 +60,7 @@
     };
 
     socketio.on("message", (data) => {
+        if(data.name===""){setTimeout(4000);}
         createMessage(data.name, data.message, data.time);
     });
 
