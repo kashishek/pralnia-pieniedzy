@@ -1,2 +1,6 @@
-do odpalania (app nazywa sie aplikacja co nie)
-python3 -m flask --app app run
+[<instalki>]
+pip install flask
+pip install flask-socketio
+[<uruhamiano>]
+trzeba być w folderze
+python3 -m flask --app prgr run
